@@ -5,97 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HUSS - Junte-se a nós</title>
   <style>
-  body {
-    background: #000;
-    color: #fff;
-    font-family: 'Comic Sans MS', cursive;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-  h1 {
-    font-size: 4em;
-    margin-top: 60px;
-    letter-spacing: 2px;
-  }
-
-  h2 {
-    font-size: 1.6em;
-    margin-top: -20px;
-    margin-bottom: 40px;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 0 20px;
-  }
-
-  .button {
-    background: linear-gradient(145deg, #ffffff, #e0e0e0);
-    color: #000;
-    font-family: 'Comic Sans MS', cursive;
-    padding: 16px 24px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-    font-size: 1.1em;
-    border: none;
-    text-decoration: none;
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
-    transition: all 0.2s ease-in-out;
-    display: block;
-  }
-
-  .button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
-  }
-
-  .footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    font-size: 0.8em;
-    color: #aaa;
-  }
-
-  @media (max-width: 480px) {
     h1 {
-      font-size: 3em;
+      font-size: 4em;
+      margin-top: 60px;
+      letter-spacing: 2px;
     }
 
     h2 {
-      font-size: 1.2em;
+      font-size: 1.6em;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 0 20px;
     }
 
     .button {
-      font-size: 1em;
-      padding: 14px 20px;
+      background: linear-gradient(145deg, #ffffff, #e0e0e0);
+      color: #000;
+      font-family: 'Comic Sans MS', cursive;
+      padding: 16px 24px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      font-size: 1.1em;
+      border: none;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+      transition: all 0.2s ease-in-out;
+      display: block;
     }
-  }
-</style>
+
+    .button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0.8em;
+      color: #aaa;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    #tracker-alert {
+      position: fixed;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      background: red;
+      color: #000;
+      font-weight: bold;
+      font-family: monospace;
+      padding: 12px;
+      text-align: center;
+      animation: blink 1s infinite;
+      z-index: 999;
+      font-size: 1em;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 3em;
+      }
+
+      h2 {
+        font-size: 1.2em;
+      }
+
+      .button {
+        font-size: 1em;
+        padding: 14px 20px;
+      }
+
+      #tracker-alert {
+        font-size: 0.9em;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <h1>HUSS</h1>
-<h2>JUNTE-SE A NÓS</h2>
+  <h2>JUNTE-SE A NÓS</h2>
 
-<div class="container">
-  <a class="button" href="https://www.mediafire.com/file/EXEMPLO/huss.apk/file" target="_blank">
-    Acesse a comunidade Huss pelo aplicativo<br><strong>Download</strong>
-  </a>
-  <a class="button" href="forum.html">
-    ou visite o nosso fórum pelo site
-  </a>
-  
+  <div class="container">
+    <a class="button" href="https://www.mediafire.com/file/EXEMPLO/huss.apk/file" target="_blank">
+      Acesse a comunidade Huss pelo aplicativo<br><strong>Download</strong>
+    </a>
+    <a class="button" href="forum.html">
+      ou visite o nosso fórum pelo site
+    </a>
+  </div>
+
+  <!-- Alerta de rastreamento -->
+  <div id="tracker-alert">👁️ [⚠] Sua localização está sendo rastreada... aguarde instruções.</div>
+
+  <!-- Som de alerta -->
+  <audio id="alert-sound" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+  </audio>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const sound = document.getElementById('alert-sound');
+        if (sound) sound.play().catch(() => {});
+      }, 1500);
+    });
+  </script>
+
   <div class="footer">
     somos um grupo de hackers e queremos que você tenha a chance de se juntar a nós (não conte para ninguém sobre nós).
-</div>
+  </div>
 
 </body>
 </html>
