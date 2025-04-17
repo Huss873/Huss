@@ -1,33 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HUSS - Login</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
+<style>
+  body {
+    background-color: #000;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding-top: 40px;
+    margin: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+  .caixa {
+    background-color: #fff;
+    margin: 16px auto;
+    border-radius: 8px;
+    padding: 14px 20px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .caixa:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  .caixa a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .caixa img {
+    vertical-align: middle;
+  }
+
+  @media (max-width: 480px) {
+    .caixa {
+      font-size: 14px;
     }
-
-.container {
-  width: 100%;
-  max-width: 400px;
-  padding: 0 16px;
-  margin: 0 auto;
-}
-
-  </style>
-</head>
-<body class="tela-escura">
-  <h1>HUSS</h1>
-  <p>crie a sua conta para se juntar à nossa comunidade!</p>
-
-  <div class="caixa">
-    <a href="login-google.html"><img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_18dp.png" width="20"> crie a conta pelo google</a>
-  </div>
-
-  <div class="caixa">
-    <a href="fake-apple.html"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="20"> crie a sua conta pela apple</a>
-  </div>
-</body>
-</html>
+  }
+</style>
